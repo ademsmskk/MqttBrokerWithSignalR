@@ -48,6 +48,7 @@ namespace Mqtt.Client.AspNetCore
         {
             services.AddMqttClientHostedService();
             services.AddSingleton<ExtarnalService>();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,14 +60,18 @@ namespace Mqtt.Client.AspNetCore
             }
 
             app.UseRouting();
+     
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync("Hello World!");
+                    
                 });
+                endpoints.MapHub<PayloadPublishHub>("/signalrhub");
             });
+
         }
     }
 }

@@ -20,7 +20,8 @@ namespace Mqtt.Client.AspNetCore.Extensions
                 aspOptionBuilder
                 .WithCredentials(clientSettinigs.UserName, clientSettinigs.Password)
                 .WithClientId(clientSettinigs.Id)
-                .WithTcpServer(brokerHostSettings.Host, brokerHostSettings.Port);
+                .WithTcpServer(brokerHostSettings.Host, brokerHostSettings.Port)
+                ;
             });
             return services;
         }
